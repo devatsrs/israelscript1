@@ -50,10 +50,14 @@ class TestingCommand extends Command {
 
 		$full_localpath = RecordingFile::get_full_path("2018-11-02 11:00:00","rec4.log");
 
-		$this->info( $full_localpath);
-		$this->info( getenv("RECORDING_FILE_LOCATION2") . '/' . basename($full_localpath) );
 
-		RemoteServer::put( getenv("RECORDING_FILE_LOCATION2") . '/' . basename($full_localpath) , $full_localpath );
+
+		$full_localpath = RecordingFile::get_full_path("2018-11-02 11:00:00","rec4.log.txt");
+
+		$this->info( getenv("RECORDING_FILE_LOCATION1") . '/' . basename($full_localpath) );
+		$this->info( $full_localpath);
+
+		RemoteServer::put( getenv("RECORDING_FILE_LOCATION1") . '/' . basename($full_localpath) , $full_localpath );
 
 		//print_r($recordingfiles);
 

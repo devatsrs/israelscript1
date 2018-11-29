@@ -30,6 +30,11 @@ class FTPGateway{
     public static function put($local_full_path, $server_full_path){
 
         //$status =  RemoteFacade::put($local_full_path, $server_full_path);
+        $dirname = dirname($server_full_path);
+
+        \Illuminate\Support\Facades\SSH::into('production')->run(array(
+            'mkdir -p 777 ' . $dirname,
+        ));
 
         $status = \Illuminate\Support\Facades\SSH::into('production')->put($local_full_path, $server_full_path);
 

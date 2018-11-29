@@ -33,6 +33,11 @@ class FTPSGateway{
 
     public function put($local_full_path, $server_full_path){
 
+        $dirname = dirname($server_full_path);
+
+        $this->ftp->mkdir($dirname , true);
+        $this->ftp->chmod(0777, $dirname);
+
         $status = $this->ftp->put($local_full_path, $server_full_path, FTP_ASCII  );
 
         return $status;
