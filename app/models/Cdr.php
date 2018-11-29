@@ -12,7 +12,7 @@ class Cdr extends \Eloquent  {
 
 				if (!empty($rangeDate1) && empty($rangeDate2)) {
 
-				$recordingfile = Cdr::where('did',  $did)->where('calldate',  $rangeDate1);
+				$recordingfile = Cdr::where('did',  $did)->where('date(calldate)',  $rangeDate1);
 
 			} else if (!empty($rangeDate1) && !empty($rangeDate2)) {
 
