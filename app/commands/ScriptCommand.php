@@ -62,12 +62,15 @@ class ScriptCommand extends Command {
 
 		foreach($recordingfiles as $recordingfile) {
 
-				$full_localpath = RecordingFile::get_full_path($recordingfile["calldate"],$recordingfile["recordingfile"]);
+				$full_server_path = RecordingFile::get_full_path($recordingfile["calldate"],$recordingfile["recordingfile"]);
 
-				RemoteServer::put($full_localpath, getenv("RECORDING_FILE_LOCATION2") . '/' . basename($full_localpath));
+				$full_localpath = getenv("RECORDING_FILE_LOCATION1") . '/' . basename($full_server_path) ;
+
+				RemoteServer::put( $full_localpath , $full_server_path );
 
 
-				$this->info("File copied" . $full_localpath );
+				$this->info("File copied from " . $full_localpath );
+				$this->info("to" . $full_server_path );
 
 		}
 
